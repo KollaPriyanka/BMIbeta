@@ -26,7 +26,7 @@ pipeline {
               }
             }
         }
-        stage('Pushing to Nexus'){
+        /*stage('Pushing to Nexus'){
             steps{
                withCredentials([usernamePassword(credentialsId: 'nexus-credentialss', passwordVariable: 'password', usernameVariable: 'username'),string(credentialsId: 'NEXUS_URL', variable: 'nexus_url')]){
                     //sh 'curl -u ${username}:${password} --upload-file target/BMIBeta-${BUILD_NUMBER}.jar http://18.224.155.110:8081/nexus/content/repositories/devopstraining/comrades/BMI-${BUILD_NUMBER}.war'
@@ -72,7 +72,7 @@ pipeline {
         }*/
         
      }
-               post { 
+              /* post { 
                 success { 
                     echo 'notified to slack '
                     slackSend (color: '#00FF00', message: " JOB SUCCESSFUL: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
@@ -81,7 +81,7 @@ pipeline {
                     echo 'notified to slack'
                     slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
                 }
-               }
+               }*/
    
 
 }
