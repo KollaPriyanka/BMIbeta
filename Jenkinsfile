@@ -3,9 +3,6 @@ pipeline {
     tools {
         maven "Maven"   
     }   
-    /*environment{
-        sonarscanner = tool 'SonarScanner'
-    }*/
     stages {
         stage('Compile-Build-Test ') {
             steps {
