@@ -28,7 +28,7 @@ pipeline {
         }
          stage("collecting") {
             steps {
-                sh 'curl -X GET -v http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
+                sh 'curl -X GET -v -u http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
               //sh 'curl -X GET -v -u admin:admin http://3.16.33.107:9000/api/issues/set_severity?issue=ac539576-df80-4a1f-9631-991b31ad27ef&severity=BLOCKER'
               
             }
