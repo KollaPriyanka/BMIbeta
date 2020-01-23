@@ -3,22 +3,34 @@ pipeline {
     tools {
         maven "Maven"   
     }   
-    environment{
+    /*environment{
         sonarscanner = tool 'SonarScanner'
-    }
+    }*/
     stages {
         stage('Compile-Build-Test ') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('SonarQube Analysis'){
+        stage('SonarQube Analysis')
+        {
+             environment {
+                scannerHome=tool 'SonarScanner'
+            }
+             steps{
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'sonar_credentials', usernameVariable: 'USER', passwordVariable: 'PASS']])
+                 {
+                     sh "mvn $USER:$PASS -Dsonar.host.url=http://3.16.33.107:9000"
+                 }
+             }
+         }
+        /*stage('SonarQube Analysis'){
             steps{
                withSonarQubeEnv('sonarqube'){
                      sh '${sonarscanner}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
                 }
             }
-        }
+        }*/
         stage("Quality Gate") {
             steps {
               timeout(time: 3, unit: 'MINUTES') {
