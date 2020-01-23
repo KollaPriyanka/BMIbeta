@@ -21,25 +21,25 @@ pipeline {
                 sh "mvn sonar:sonar -Dsonar.host.url=http://3.16.33.107:9000"
             }
         }*/
+       stage("Creating project in Sonar") {
+            steps {
+                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=BMIBeta&name=BMIBeta'
+          
+            }
+        }
         
-        stage('SonarQube Analysis'){
+        /*stage('SonarQube Analysis'){
             steps{
                withSonarQubeEnv('sonarqube'){
                      sh '${sonarscanner}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
                 }
             }
-        }
+        }*/
         stage("Quality Gate") {
             steps {
               timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }
-            }
-        }
-        stage("Creating project in Sonar") {
-            steps {
-                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=one&name=one'
-          
             }
         }
          stage("collecting") {
