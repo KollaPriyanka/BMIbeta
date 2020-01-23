@@ -41,6 +41,7 @@ pipeline {
         stage("Quality Gate") {
             steps {
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=sana1"'
+                sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/copy?id=2&name=sana1"'
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=2&metric=blocker_violations&op=GT&warning=5&error=10"'
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=2&metric=critical_violations&op=GT&warning=5&error=10"'
@@ -53,7 +54,7 @@ pipeline {
         }
          stage("collecting") {
             steps {
-                sh 'curl -X GET -v -G http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
+                sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
           
             }
         }
