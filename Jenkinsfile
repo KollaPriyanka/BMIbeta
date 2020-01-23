@@ -40,9 +40,14 @@ pipeline {
         }*/
         stage("Quality Gate") {
             steps {
-              timeout(time: 20, unit: 'MINUTES') {
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=sana"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=sana&metric=blocker_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=sana&metric=critical_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=sana"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=sana&projectId=BMI"'
+              /*timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
-              }
+              }*/
             }
         }
          stage("collecting") {
