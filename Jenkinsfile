@@ -40,12 +40,12 @@ pipeline {
         }*/
         stage("Quality Gate") {
             steps {
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=sana"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/copy?id=1&name=sana"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=1&metric=blocker_violations&op=GT&warning=5&error=10"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=1&metric=critical_violations&op=GT&warning=5&error=10"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=1"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=1&projectId=BMI"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=sana1"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/copy?id=2&name=sana1"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=2&metric=blocker_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=2&metric=critical_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=2"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=2&projectId=BMI"'
               /*timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }*/
