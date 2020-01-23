@@ -2,14 +2,17 @@ pipeline {
     agent any
     tools {
         maven "Maven"   
-    }   
+    } 
+     environment {
+           sonarscanner=tool 'SonarScanner'
+       }
     stages {
         stage('Compile-Build-Test ') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        stage('Sonar') {
+        /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
        }
@@ -29,14 +32,14 @@ pipeline {
                      sh "mvn $USER:$PASS -Dsonar.host.url=http://3.16.33.107:9000"
                  }
              }
-         }
-        /*stage('SonarQube Analysis'){
+         }*/
+        stage('SonarQube Analysis'){
             steps{
                withSonarQubeEnv('sonarqube'){
                      sh '${sonarscanner}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
                 }
             }
-        }*/
+        }
         stage("Quality Gate") {
             steps {
               timeout(time: 20, unit: 'MINUTES') {
