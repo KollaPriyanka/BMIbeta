@@ -9,7 +9,16 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('SonarQube Analysis')
+        stage('Sonar') {
+        environment {
+           scannerHome=tool 'SonarScanner'
+       }
+            steps {
+                
+                sh "mvn sonar:sonar -Dsonar.host.url=http://3.16.33.107:9000"
+            }
+        }
+        /*stage('SonarQube Analysis')
         {
              environment {
                 scannerHome=tool 'SonarScanner'
