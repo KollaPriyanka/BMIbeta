@@ -23,7 +23,7 @@ pipeline {
         }*/
         stage("Creating project in Sonar") {
             steps {
-                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=BMIBeta&name=BMIBeta'
+                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=one&name=one'
           
             }
         }
