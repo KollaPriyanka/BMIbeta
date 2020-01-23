@@ -24,9 +24,9 @@ pipeline {
        stage("Creating project in Sonar") {
             steps {
                 sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=BMIBeta&name=BMIBeta'
-                withSonarQubeEnv('sonarqube'){
+                /*withSonarQubeEnv('sonarqube'){
                      sh 'mvn sonar:sonar'
-                }
+                }*/
           
             }
         }
@@ -41,10 +41,11 @@ pipeline {
         stage("Quality Gate") {
             steps {
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=sana"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=sana&metric=blocker_violations&op=GT&warning=5&error=10"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=sana&metric=critical_violations&op=GT&warning=5&error=10"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=sana"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=sana&projectId=BMI"'
+                sh 'curl -u admin:admin -X POST "http://localhost:9000/api/qualitygates/copy?id=1&name=sana"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=1&metric=blocker_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=1&metric=critical_violations&op=GT&warning=5&error=10"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=1"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=1&projectId=BMI"'
               /*timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }*/
