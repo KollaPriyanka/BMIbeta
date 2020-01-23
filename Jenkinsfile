@@ -21,12 +21,6 @@ pipeline {
                 sh "mvn sonar:sonar -Dsonar.host.url=http://3.16.33.107:9000"
             }
         }*/
-        stage("Creating project in Sonar") {
-            steps {
-                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=one&name=one'
-          
-            }
-        }
         
         stage('SonarQube Analysis'){
             steps{
@@ -40,6 +34,12 @@ pipeline {
               timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }
+            }
+        }
+        stage("Creating project in Sonar") {
+            steps {
+                sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=one&name=one'
+          
             }
         }
          stage("collecting") {
