@@ -1,4 +1,7 @@
 pipeline {
+    libraries{
+        shlib
+    }
     agent any
     tools {
         maven "Maven"   
@@ -12,6 +15,17 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        
+        stage('sonarconnector'){
+            steps{
+                sonarConnector()
+            }   
+        }
+        stage('sonarcollector'){
+            steps{
+                sonarCollector()
+            }   
+        }
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
@@ -21,7 +35,7 @@ pipeline {
                 sh "mvn sonar:sonar -Dsonar.host.url=http://3.16.33.107:9000"
             }
         }*/
-       stage("Creating project in Sonar") {
+       /*stage("Creating project in Sonar") {
             steps {
                 sh 'curl -u admin:admin -X POST "http://ec2-3-16-33-107.us-east-2.compute.amazonaws.com:9000/api/projects/create?key=newKey&name=EDN250"'
                 //sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=BMIBeta&name=BMIBeta'
@@ -39,7 +53,7 @@ pipeline {
                 }
             }
         }*/
-        stage("Quality Gate") {
+        /*stage("Quality Gate") {
             steps {
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create?name=EDN250"'
                 sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
@@ -54,7 +68,7 @@ pipeline {
               }*/
             }
         }
-         stage("collecting") {
+         /*stage("collecting") {
             steps {
                 sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
                 sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
