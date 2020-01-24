@@ -23,7 +23,7 @@ pipeline {
         }
         stage('sonarcollector'){
             steps{
-                soanrCollector()
+                sonarCollector()
             }   
         }
         /*stage('Sonar') {
