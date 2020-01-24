@@ -48,7 +48,7 @@ pipeline {
                 sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/create_condition?gateId=10&metric=critical_violations&op=GT&warning=5&error=10"'
                 sh 'curl -u GET http://3.16.33.107:9000/api/qualitygates/show?id=9'
                 //sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select_as_default?id=9"'
-                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=10&projectId=newKey"'
+                sh 'curl -u admin:admin -X POST "http://3.16.33.107:9000/api/qualitygates/select?gateId=10&projectId=1"'
               /*timeout(time: 20, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }*/
