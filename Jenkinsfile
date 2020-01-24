@@ -56,7 +56,7 @@ pipeline {
         }
          stage("collecting") {
             steps {
-                sh 'curl -X GET http://sonar-domain/api/projects/search?qualifiers=TRK&ps=100'
+                sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
                 sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
           
             }
