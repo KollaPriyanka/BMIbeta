@@ -25,9 +25,9 @@ pipeline {
             steps {
                 sh 'curl -u admin:admin -X POST "http://ec2-3-16-33-107.us-east-2.compute.amazonaws.com:9000/api/projects/create?key=newKey&name=EDN250"'
                 //sh 'curl -u admin:admin -X POST http://3.16.33.107:9000/api/projects/create?key=BMIBeta&name=BMIBeta'
-                /*withSonarQubeEnv('sonarqube'){
+                withSonarQubeEnv('sonarqube'){
                      sh 'mvn sonar:sonar'
-                }*/
+                }
           
             }
         }
