@@ -18,7 +18,7 @@ pipeline {
         
         stage('sonarconnector'){
             steps{
-                sonarConnector(rigKey EDN250 EDN250 12 1)
+                sonarConnector("rigKey","EDN250","EDN250",12,1)
             }   
         }
         stage('sonarcollector'){
