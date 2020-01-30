@@ -22,8 +22,9 @@ pipeline {
                 //sonarProject()
                 //sonarQualityGate()
                 //sonarGateList()
-                sonarBlockerConditions()
-                sonarCriticalConditions()
+                //sonarBlockerConditions()
+                //sonarCriticalConditions()
+                sonarAssociateProject()
             }   
         }
         /*stage('sonarcollector'){
