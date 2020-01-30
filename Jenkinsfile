@@ -18,7 +18,7 @@ pipeline {
         
         stage('sonarconnector'){
             steps{
-                sonarConnector()
+                sonarConnector("PRO2","EDN250","EDN250",14,1)
             }   
         }
         /*stage('sonarcollector'){
