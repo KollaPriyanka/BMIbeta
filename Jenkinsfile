@@ -18,14 +18,14 @@ pipeline {
         
         stage('sonarconnector'){
             steps{
-                sonarConnector("rigKey","EDN250","EDN250",12,1)
+                sonarConnector()
             }   
         }
-        stage('sonarcollector'){
+        /*stage('sonarcollector'){
             steps{
                 sonarCollector()
             }   
-        }
+        }*/
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
