@@ -19,19 +19,20 @@ pipeline {
         stage('sonarconnector'){
             steps{
                 //sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
-                //sonarProject()
-                //sonarQualityGate()
+                sonarProject()
+                sonarQualityGate()
+                sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 //sonarGateList()
-                //sonarBlockerConditions()
-                //sonarCriticalConditions()
+                sonarBlockerConditions()
+                sonarCriticalConditions()
                 sonarAssociateProject()
             }   
         }
-        /*stage('sonarcollector'){
+        stage('sonarcollector'){
             steps{
                 sonarCollector()
             }   
-        }*/
+        }
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
