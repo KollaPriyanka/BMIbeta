@@ -20,7 +20,8 @@ pipeline {
             steps{
                 //sonarProject()
                 //sonarQualityGate()
-                sonarBlockerConditions()
+                sonarGateList()
+                //sonarBlockerConditions()
             }   
         }
         /*stage('sonarcollector'){
