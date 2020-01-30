@@ -18,7 +18,7 @@ pipeline {
         
         stage('sonarconnector'){
             steps{
-                sonarConnector()
+                sonarProject()
             }   
         }
         /*stage('sonarcollector'){
