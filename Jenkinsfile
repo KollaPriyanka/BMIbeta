@@ -30,7 +30,7 @@ pipeline {
             }   
              post{
                failure{
-                  log_sonar("Project and QualityGate created successfully")
+                  log_sonar("Project and QualityGate not created")
                       }
                   }
              }
@@ -41,7 +41,7 @@ pipeline {
             }  
             post{
                failure{
-                  log_sonar("Data not collected successfully")
+                  log_sonar("Data not collected")
                       }
                   }
         }
