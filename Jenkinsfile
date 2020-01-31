@@ -26,8 +26,14 @@ pipeline {
                 sonarBlockerConditions()
                 sonarCriticalConditions()
                 sonarAssociateProject()
+                log_sonar("Data collected successfully")
             }   
-        }
+             post{
+               failure{
+                  log_sonar("Data not collected successfully")
+                      }
+                  }
+             }
         stage('sonarcollector'){
             steps{
                 sonarCollector()
