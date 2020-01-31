@@ -26,18 +26,24 @@ pipeline {
                 sonarBlockerConditions()
                 sonarCriticalConditions()
                 sonarAssociateProject()
-                log_sonar("Data collected successfully")
+                log_sonar("Project and QualityGate created successfully")
             }   
              post{
                failure{
-                  log_sonar("Data not collected successfully")
+                  log_sonar("Project and QualityGate created successfully")
                       }
                   }
              }
         stage('sonarcollector'){
             steps{
                 sonarCollector()
-            }   
+                log_sonar("Data collected successfully")
+            }  
+            post{
+               failure{
+                  log_sonar("Data not collected successfully")
+                      }
+                  }
         }
         /*stage('Sonar') {
         environment {
