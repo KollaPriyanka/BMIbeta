@@ -16,7 +16,7 @@ pipeline {
             }
         }
         
-        stage('sonarconnector'){
+        /*stage('sonarconnector'){
             steps{
                 //sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 sonarProject()
@@ -44,7 +44,7 @@ pipeline {
                   log_sonar("Data not collected")
                       }
                   }
-        }
+        }*/
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
@@ -87,10 +87,11 @@ pipeline {
               }*/
            
         
-         /*stage("collecting") {
+         stage("collecting") {
             steps {
-                sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
-                sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
+                //sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
+                sh 'curl -X GET http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=EDN25'
+                //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
           
             }
         }
