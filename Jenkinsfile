@@ -87,7 +87,7 @@ pipeline {
               }*/
            
         
-         stage("collecting") {
+         /*stage("collecting") {
             steps {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
                 sh "curl --location --request GET 'http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=comrades.bmi:BMI'"
@@ -95,7 +95,13 @@ pipeline {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
           
             }
-        }
+        }*/
+         stage("Deleting") {
+            steps {
+                sh 'curl -u admin:admin -X DELETE http://3.16.33.107:9000/api/projects/sana1'
+            }
+         }
+        
         /*stage('Pushing to Nexus'){
             steps{
                withCredentials([usernamePassword(credentialsId: 'nexus-credentialss', passwordVariable: 'password', usernameVariable: 'username'),string(credentialsId: 'NEXUS_URL', variable: 'nexus_url')]){
