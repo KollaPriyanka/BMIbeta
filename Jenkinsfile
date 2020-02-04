@@ -16,16 +16,17 @@ pipeline {
             }
         }
         
-        /*stage('sonarconnector'){
+        stage('sonarconnector'){
             steps{
                 //sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 sonarProject()
-                sonarQualityGate()
+                //sonarQualityGate()
                 sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 //sonarGateList()
-                sonarBlockerConditions()
-                sonarCriticalConditions()
-                sonarAssociateProject()
+               // sonarBlockerConditions()
+               // sonarCriticalConditions()
+               // sonarAssociateProject()
+                sonarDeleteProject()
                 log_sonar("Project and QualityGate created successfully")
             }   
              post{
@@ -33,7 +34,7 @@ pipeline {
                   log_sonar("Project and QualityGate not created")
                       }
                   }
-             }*/
+             }
         stage('sonarcollector'){
             steps{
                 //sonarCollector()
