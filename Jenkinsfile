@@ -21,7 +21,7 @@ pipeline {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 sonarProject()
                 //sonarQualityGate()
-                sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
+               // sh 'curl -X GET http://3.16.33.107:9000/api/qualitygates/list'
                 //sonarGateList()
                // sonarBlockerConditions()
                // sonarCriticalConditions()
