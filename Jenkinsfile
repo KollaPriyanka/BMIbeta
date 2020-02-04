@@ -33,10 +33,11 @@ pipeline {
                   log_sonar("Project and QualityGate not created")
                       }
                   }
-             }
+             }*/
         stage('sonarcollector'){
             steps{
-                sonarCollector()
+                //sonarCollector()
+                sonarParticularProject()
                 log_sonar("Data collected successfully")
             }  
             post{
@@ -44,7 +45,7 @@ pipeline {
                   log_sonar("Data not collected")
                       }
                   }
-        }*/
+        }
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
