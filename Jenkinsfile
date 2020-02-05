@@ -9,7 +9,7 @@ pipeline {
     /* environment {
            sonarscanner=tool 'SonarScanner'
        } */
-    stages {
+   /* stages {
         stage('Compile-Build-Test ') {
             steps {
                 sh 'mvn clean package'
@@ -54,7 +54,7 @@ pipeline {
                   log_sonar("Data not collected")
                       }
                   }
-        }
+        }*/
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
@@ -97,7 +97,7 @@ pipeline {
               }*/
            
         
-        /* stage("collecting") {
+         stage("collecting") {
             steps {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
                 var="$(curl --location --request GET 'http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=EDN250')"
@@ -106,7 +106,7 @@ pipeline {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
           
             }
-        }*/
+        }
          /*stage("Deleting") {
             steps {
                 sh 'curl -u admin:admin -X DELETE http://3.16.33.107:9000/api/projects/sana1'
