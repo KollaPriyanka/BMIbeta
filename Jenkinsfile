@@ -103,7 +103,7 @@ pipeline {
                 script
                 {
                def var = sh "curl --location --request GET 'http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=RIG'"                               
-               response.component[0].main
+              var.component[0].main
                 }
 //sh 'curl -X GET http://3.16.33.107:9000/api/measures/component?metricKeys=violations&componentKey=comrades.bmi:BMI'
                 //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
