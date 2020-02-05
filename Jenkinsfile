@@ -16,7 +16,7 @@ pipeline {
             }
         }
         
-       /* stage('sonarconnector'){
+        stage('sonarconnector'){
             steps{
                 sonarProject()
                 log_sonar("Project created successfully")
@@ -54,7 +54,7 @@ pipeline {
                   log_sonar("Data not collected")
                       }
                   }
-        }*/
+        }
         /*stage('Sonar') {
         environment {
            scannerHome=tool 'SonarScanner'
@@ -97,7 +97,7 @@ pipeline {
               }*/
            
         
-         stage("collecting") {
+         /*stage("collecting") {
             steps {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
                 script
@@ -109,7 +109,7 @@ pipeline {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
                  }
          
-        }
+        }*/
          /*stage("Deleting") {
             steps {
                 sh 'curl -u admin:admin -X DELETE http://3.16.33.107:9000/api/projects/sana1'
