@@ -100,7 +100,7 @@ pipeline {
          stage("collecting") {
             steps {
                 //sh 'curl -X GET http://3.16.33.107:9000/api/projects/search?qualifiers=TRK&ps=100'
-                $var = curl --location --request GET 'http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=EDN250'
+                $var = {curl --location --request GET 'http://3.16.33.107:9000/api/measures/component?metricKeys=ncloc,complexity,violations&component=EDN250'}
                 
 //sh 'curl -X GET http://3.16.33.107:9000/api/measures/component?metricKeys=violations&componentKey=comrades.bmi:BMI'
                 //sh 'curl -X GET http://3.16.33.107:9000/api/issues/search?componentRoots=org.codehaus.sonar:sonar'
