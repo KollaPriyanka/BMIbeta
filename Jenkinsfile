@@ -9,14 +9,14 @@ pipeline {
     /* environment {
            sonarscanner=tool 'SonarScanner'
        } */
-   /* stages {
+    stages {
         stage('Compile-Build-Test ') {
             steps {
                 sh 'mvn clean package'
             }
         }
         
-        stage('sonarconnector'){
+       /* stage('sonarconnector'){
             steps{
                 sonarProject()
                 log_sonar("Project created successfully")
@@ -158,7 +158,7 @@ pipeline {
             }
         }*/
         
-    // }
+     }
               /* post { 
                 success { 
                     echo 'notified to slack '
