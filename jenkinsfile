@@ -14,13 +14,13 @@ pipeline {
         
         stage('Deploy to Development'){
             steps{
-          // sh 'curl http://18.191.201.243:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
-               deploy adapters: [tomcat8(credentialsId: 'tomcat_cred', path: '', url: 'http://18.191.201.243:8080')], contextPath: 'bmi', onFailure: false, war: '**/*.war'
+          
+              // deploy adapters: [tomcat8(credentialsId: 'tomcat_cred', path: '', url: 'http://18.191.201.243:8080')], contextPath: 'bmi', onFailure: false, war: '**/*.war'
              /*  sshagent(['tomcat_c']) {
             sh 'scp -o StrictHostKeyChecking=no target/*.war root@18.191.201.243:~/apache-tomcat-8.5.56/webapps/'
             }*/
-           /* sh 'curl http://18.191.201.243:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
-                    sh 'curl -v -u tomcat:secret -T target/BMI-0.war http://18.191.201.243:8080//manager/text/deploy?path=/BMI'*/
+           sh 'curl http://18.191.201.243:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
+                    sh 'curl -v -u tomcat:secret -T target/BMI-0.war http://18.191.201.243:8080//manager/text/deploy?path=/BMI'
                   
             }
         }
