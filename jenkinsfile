@@ -21,7 +21,7 @@ pipeline {
             }*/
            /*sh 'curl http://18.191.201.243:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
                     sh 'curl -v -u tomcat:secret -T target/BMI-0.war http://18.191.201.243:8080//manager/text/deploy?path=/BMI'*/
-             sh 'curl ${tomcat_url}/manager/text/undeploy?path=/BMI -u ${username}:${password}'
+             //sh 'curl ${tomcat_url}/manager/text/undeploy?path=/BMI -u ${username}:${password}'
                     sh 'curl -v -u ${username}:${password} -T target/BMI${BUILD_NUMBER}.war ${tomcat_url}/manager/text/deploy?path=/BMI'     
             }
         }
