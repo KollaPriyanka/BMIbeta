@@ -1,3 +1,3 @@
-# BMIbeta-Priya
+# BMIbeta
 BMI Calculator Appllication
 .
