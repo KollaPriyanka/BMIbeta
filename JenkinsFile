@@ -11,11 +11,11 @@ pipeline {
 	    	                build 'BUILD'
                    }
               }
-	      stage('SonarQube Analysis'){
+	      /*stage('SonarQube Analysis'){
             steps{
                sonar()
             }
-        }
+        }*/
               stage('Deployment'){
             steps{
                deploy_tomcat()
