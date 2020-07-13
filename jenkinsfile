@@ -31,7 +31,15 @@ pipeline {
             
           }
           
-          
+          stage('Uploading playbook to Ansible'){
+            steps{
+                withCredentials([string(credentialsId: 'ANSADMIN_PASSWORD', variable: 'ansadmin_password')]){
+                //sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//playbooks', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'project-ansible.yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])   
+                sh 'sshpass -p ${ansadmin_password} scp -v BMI-Playbook.yml ansadmin@172.31.22.13:/opt/playbooks'
+                }
+            }
+            
+        } 
         stage('Deploy to Development'){
             steps{
           
