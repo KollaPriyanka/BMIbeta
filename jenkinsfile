@@ -58,10 +58,9 @@ pipeline {
         }
         
            
-       /* stage('Deploy to Development'){
+       /*stage('Deploy to Development'){
             steps{
-          
-              deploy adapters: [tomcat8(credentialsId: 'tomcat_cred', path: '', url: 'http://18.191.201.243:8080')], contextPath: 'bmi', onFailure: false, war: '**/*.war'
+          deploy adapters: [tomcat8(credentialsId: 'tomcat_cred', path: '', url: 'http://18.191.201.243:8080')], contextPath: 'bmi', onFailure: false, war: '**/*.war'
               sshagent(['tomcat_c']) {
             sh 'scp -o StrictHostKeyChecking=no target/*.war root@18.191.201.243:~/apache-tomcat-8.5.56/webapps/'
             }
