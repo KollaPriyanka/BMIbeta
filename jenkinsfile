@@ -30,7 +30,16 @@ pipeline {
             }
             
           }
-         
+        
+        stage('Uploading playbook to Ansible'){
+            steps{
+                 withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {  
+                sh 'sshpass -p password scp -v playbook.yml ansadmin@3.23.88.249:/opt/playbooks'
+
+                }
+            }
+            
+        }
          
          stage('Uploading artifacts to Ansible'){
             steps{
@@ -40,15 +49,7 @@ pipeline {
             }
 }
         }
-        stage('Uploading playbook to Ansible'){
-            steps{
-                 withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {  
-                sh 'sshpass -p ${password} scp -v playbook.yml ansadmin@3.23.88.249:~/playbooks'
-
-                }
-            }
-            
-        }
+        
         stage('Executing Playbook'){
             steps{
                withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {
