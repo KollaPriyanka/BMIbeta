@@ -1,0 +1,9 @@
+---
+- hosts: tomcat
+  become: true
+  tasks:
+    - name: Copy war onto tomcat server
+      copy:
+            src: /home/ansadmin/target/sfinder-0.0.1-SNAPSHOT.war
+            dest: /opt/apache-tomcat-9.0.37/webapps
+...
