@@ -34,7 +34,7 @@ pipeline {
          
          stage('Uploading artifacts to Ansible'){
             steps{
- withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+ withCredentials([usernamePassword(credentialsId: 'ansible_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {
                               sh 'sshpass -p ${pass} scp -o StrictHostKeyChecking=no target/*.war ansadmin@3.23.88.249:~/target/'
 
             }
@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Uploading playbook to Ansible'){
             steps{
-                 withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {  
+                 withCredentials([usernamePassword(credentialsId: 'ansible_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {  
                 sh 'sshpass -p ${pass} scp -v playbook.yml ansadmin@3.23.88.249:~/playbooks'
 
                 }
@@ -51,7 +51,7 @@ pipeline {
         }
         stage('Executing Playbook'){
             steps{
-               withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+               withCredentials([usernamePassword(credentialsId: 'ansible_cred', passwordVariable: 'password', usernameVariable: 'priya')]) {
                     sh 'sshpass -p ${pass} ssh -v -o StrictHostKeyChecking=no ansadmin@3.23.88.249 \"ansible-playbook /home/ansadmin/playbooks/playbook.yml\"'
                 }
             }
