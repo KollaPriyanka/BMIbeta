@@ -31,7 +31,7 @@ pipeline {
             
           }
         
-        stage('Uploading artifacts to Ansible'){
+       /* stage('Uploading artifacts to Ansible'){
             steps{
  withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass', usernameVariable: 'userId')]) {
                               sh 'sshpass -p ${pass} scp -o StrictHostKeyChecking=no target/*.war ansadmin@172.31.36.158:~/target/'
@@ -54,20 +54,20 @@ pipeline {
                     sh 'sshpass -p ${pass} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.36.158 \"ansible-playbook /home/ansadmin/playbooks/playbook.yml\"'
                 }
             }
-        }
+        }*/
         
            
-       //stage('Deploy to Development'){
-           // steps{
+       stage('Deploy to Development'){
+            steps{
           //deploy adapters: [tomcat8(credentialsId: 'tomcat_cred', path: '', url: 'http://18.191.201.243:8080')], contextPath: 'bmi', onFailure: false, war: '**/*.war'
             //  sshagent(['tomcat_c']) {
             //sh 'scp -o StrictHostKeyChecking=no target/*.war root@18.191.201.243:~/apache-tomcat-8.5.56/webapps/'
            // }
-          //sh 'curl http://18.189.16.15:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
-                  //  sh 'curl -v -u tomcat:secret -T target/BMI-0.war http://18.189.16.15:8080//manager/text/deploy?path=/BMI'
+          sh 'curl http://3.129.5.113:8080//manager/text/undeploy?path=/BMI -u tomcat:secret'
+                    sh 'curl -v -u tomcat:secret -T target/BMI-0.war http://3.129.5.113:8080//manager/text/deploy?path=/BMI'
                   
-           // }
-       // }
+            }
+       }
         }
         
         post { 
