@@ -33,7 +33,8 @@ pipeline {
         
         stage('Uploading playbook to Ansible'){
             steps{
-                 withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass')]) {  
+                 //withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass')]) { 
+                  withCredentials([string(credentialsId: 'anisble_cred', variable: 'pass')]){
                 sh 'sshpass -p ${pass} scp -v playbook.yml ansadmin@172.31.24.120:~/playbooks'
 
                 }
