@@ -31,30 +31,27 @@ pipeline {
             
           }
         
+        stage('Uploading artifacts to Ansible'){
+            steps{
+ withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+                              sh 'sshpass -p ${pass} scp -o StrictHostKeyChecking=no target/*.war ansadmin@172.31.36.158:~/target/'
+
+            }
+}
+        }
         stage('Uploading playbook to Ansible'){
             steps{
-                 withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass', usernameVariable: 'userId')]) { 
-                  //withCredentials([string(credentialsId: 'anisble_cred', passwordVariable: 'pass')]){
-                sh 'sshpass -p ${pass} scp -v playbook.yml ansadmin@172.31.24.120:~/playbooks'
+                 withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {  
+                sh 'sshpass -p ${pass} scp -v playbook.yml ansadmin@172.31.36.158:~/playbooks'
 
                 }
             }
             
         }
-         
-         stage('Uploading artifacts to Ansible'){
-            steps{
- withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass')]) {
-                              sh 'sshpass -p ${pass} scp -o StrictHostKeyChecking=no target/*.war ansadmin@172.31.24.120:~/target/'
-
-            }
-}
-        }
-        
         stage('Executing Playbook'){
             steps{
-               withCredentials([usernamePassword(credentialsId: 'anisble_cred', passwordVariable: 'pass')]) {
-                    sh 'sshpass -p ${pass} ssh -v -o StrictHostKeyChecking=no ansadmin@3.23.88.249 \"ansible-playbook /home/ansadmin/playbooks/playbook.yml\"'
+               withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+                    sh 'sshpass -p ${pass} ssh -v -o StrictHostKeyChecking=no ansadmin@172.31.36.158 \"ansible-playbook /home/ansadmin/playbooks/playbook.yml\"'
                 }
             }
         }
