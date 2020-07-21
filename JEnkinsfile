@@ -1,4 +1,4 @@
-@Library(['shlib@master'])_
+@Library(['shlib'])_
 pipelinelibrary{
 urllink='https://github.com/KollaPriyanka/sharedliibrarydocker.git'
 mavenBuild='mvn clean package'
