@@ -14,4 +14,5 @@ sonarjavacoveragePlugin='jacoco'
 sonarcoveragejacocoxmlReportPaths='target/site/jacoco/jacoco.xml'
 sonarExclusions=''
 sonarsourceEncoding='UTF-8'
+tomcaturl='http://3.133.100.227:8080//manager/text/undeploy?path=/BMI'
 }
