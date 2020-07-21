@@ -1,6 +1,6 @@
 @Library(['shlib'])_
 pipelinelibrary{
-urllink='https://github.com/KollaPriyanka/sharedliibrarydocker.git'
+urllink='https://github.com/KollaPriyanka/BMIbeta-Priya.git'
 mavenBuild='mvn clean package'
 sonarorganization='kollapriyanka'
 sonarprojectKey='BMIBeta'
